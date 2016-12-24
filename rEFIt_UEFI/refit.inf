@@ -254,6 +254,8 @@
   gEfiPlatformDriverOverrideProtocolGuid
   gEmuVariableControlProtocolGuid
 
+  gAppleSmcIoProtocolGuid
+
 [FeaturePcd]
   gEfiMdePkgTokenSpaceGuid.PcdUgaConsumeSupport
 
