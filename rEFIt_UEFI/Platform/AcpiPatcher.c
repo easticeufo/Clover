@@ -514,7 +514,7 @@ VOID PatchAllTables()
     if (IsXsdtEntryMerged(IndexFromXsdtEntryPtr(Ptr))) {
       // table header already patched
       continue;
-    }    
+    }
 	*/
     //do new table with patched header
     UINT32 Len = Table->Length;
@@ -530,7 +530,7 @@ VOID PatchAllTables()
     EFI_ACPI_DESCRIPTION_HEADER* NewTable = (EFI_ACPI_DESCRIPTION_HEADER*)(UINTN)BufferPtr;
     CopyMem(NewTable, Table, Len);
     if ((gSettings.FixDsdt & FIX_HEADERS) || gSettings.FixHeaders) {
-			
+
 //      CopyMem(NewTable, Table, Len);
       Patched = PatchTableHeader(NewTable);
     }

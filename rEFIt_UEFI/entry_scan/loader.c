@@ -761,7 +761,7 @@ STATIC VOID AddDefaultMenu(IN LOADER_ENTRY *Entry)
       }
       AddMenuEntry(SubScreen, (REFIT_MENU_ENTRY *)SubEntry);
     }
-    
+
     SubEntry = DuplicateLoaderEntry(Entry);
     if (SubEntry) {
       if (os_version < AsciiOSVersionToUint64("10.8")) {
@@ -828,11 +828,11 @@ STATIC VOID AddDefaultMenu(IN LOADER_ENTRY *Entry)
     if (gSettings.CsrActiveConfig == 0) {
       AddMenuCheck(SubScreen, "No SIP", OSFLAG_NOSIP, 69);
     }
-    
+
   } else if (Entry->LoaderType == OSTYPE_LINEFI) {
     BOOLEAN Quiet = (StrStr(Entry->LoadOptions, L"quiet") != NULL);
     BOOLEAN WithSplash = (StrStr(Entry->LoadOptions, L"splash") != NULL);
-    
+
     // default entry
     SubEntry = DuplicateLoaderEntry(Entry);
     if (SubEntry) {
@@ -893,7 +893,7 @@ STATIC VOID AddDefaultMenu(IN LOADER_ENTRY *Entry)
   } else if ((Entry->LoaderType == OSTYPE_WIN) || (Entry->LoaderType == OSTYPE_WINEFI)) {
     // by default, skip the built-in selection and boot from hard disk only
     Entry->LoadOptions = PoolPrint(L"-s -h");
-    
+
     // default entry
     SubEntry = DuplicateLoaderEntry(Entry);
     if (SubEntry) {
@@ -986,7 +986,7 @@ STATIC BOOLEAN AddLoaderEntry(IN CHAR16 *LoaderPath, IN CHAR16 *LoaderOptions,
   return FALSE;
 }
 //constants
-CHAR16  APFSFVBootPath[75]      = L"\\00000000-0000-0000-0000-000000000000\\System\\Library\\CoreServices\\boot.efi"; 
+CHAR16  APFSFVBootPath[75]      = L"\\00000000-0000-0000-0000-000000000000\\System\\Library\\CoreServices\\boot.efi";
 CHAR16  APFSRecBootPath[47]     = L"\\00000000-0000-0000-0000-000000000000\\boot.efi";
 CHAR16  APFSInstallBootPath[67] = L"\\00000000-0000-0000-0000-000000000000\\com.apple.installer\\boot.efi";
 
@@ -1035,7 +1035,7 @@ VOID ScanLoader(VOID)
 
   //DBG("Scanning loaders...\n");
   DbgHeader("ScanLoader");
-   
+
   for (VolumeIndex = 0; VolumeIndex < VolumesCount; VolumeIndex++) {
     Volume = Volumes[VolumeIndex];
     if (Volume->RootDir == NULL) { // || Volume->VolName == NULL)
@@ -1130,7 +1130,7 @@ VOID ScanLoader(VOID)
       }
     }
 
-    /* APFS Container support. 
+    /* APFS Container support.
      * s.mtr 2017
      */
     if ((StriCmp(Volume->VolName, L"Recovery") == 0 || StriCmp(Volume->VolName, L"Preboot") == 0) && APFSSupport == TRUE) {
@@ -1964,7 +1964,7 @@ STATIC VOID AddCustomEntry(IN UINTN                CustomIndex,
     }
 
   }
-      
+
 }
 
 // Add custom entries
@@ -1972,7 +1972,7 @@ VOID AddCustomEntries(VOID)
 {
   CUSTOM_LOADER_ENTRY *Custom;
   UINTN                i = 0;
-  
+
   if (!gSettings.CustomEntries) {
     return;
   }
