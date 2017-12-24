@@ -1965,6 +1965,7 @@ EFI_STATUS
 SetPrivateVarProto (VOID);
 
 // Device property injection
+CONST
 CHAR8 *
 GetHdaControllerName (
   IN UINT16 VendorId,
@@ -1978,6 +1979,7 @@ InjectHdaProperties (
   IN BOOLEAN                  IsHdmiAudio
   );
 
+CONST
 CHAR8 *
 GetIntelGraphicsName (
   IN UINT16 DeviceId
