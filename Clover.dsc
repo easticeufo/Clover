@@ -494,7 +494,7 @@
   #Clover/Sample/Application/Sample.inf
   #Clover/gptsync/gptsync.inf
   Clover/bdmesg_efi/bdmesg.inf
-  
+
 !ifndef NO_CLOVER_SHELL
   Clover/ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
   Clover/ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
@@ -637,7 +637,9 @@
 !endif
 
 !ifdef DISABLE_LTO
-	DEFINE DISABLE_LTO_FLAG = -fno-lto -UUSING_LTO
+  DEFINE LTO_FLAG = -fno-lto -UUSING_LTO
+!else
+  DEFINE LTO_FLAG = -flto
 !endif
 
 
@@ -650,8 +652,5 @@ DEFINE BUILD_OPTIONS=-DMDEPKG_NDEBUG -DCLOVER_BUILD $(VBIOS_PATCH_CLOVEREFI_FLAG
 
   #MSFT:*_*_*_CC_FLAGS  = /FAcs /FR$(@R).SBR /wd4701 /wd4703 $(BUILD_OPTIONS)
   MSFT:*_*_*_CC_FLAGS  = /FAcs /FR$(@R).SBR $(BUILD_OPTIONS) -Dinline=__inline
-
-  XCODE:*_*_*_CC_FLAGS = -fno-unwind-tables -Wno-msvc-include -Os $(BUILD_OPTIONS) $(DISABLE_LTO_FLAG)
-  GCC:*_*_*_CC_FLAGS   = $(BUILD_OPTIONS) $(DISABLE_LTO_FLAG)
-  #-Wunused-but-set-variable
-  # -Os -fno-omit-frame-pointer -maccumulate-outgoing-args
+  XCODE:*_*_*_CC_FLAGS = $(BUILD_OPTIONS) $(LTO_FLAG)
+  GCC:*_*_*_CC_FLAGS   = $(BUILD_OPTIONS) $(LTO_FLAG)
